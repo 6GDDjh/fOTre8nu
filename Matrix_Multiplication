@@ -1,0 +1,48 @@
+"
+```python
+import random
+
+def generate_matrix(rows, columns):
+    """"""
+    Generates a matrix with given rows and columns
+    """"""
+    return [[random.randint(0, 9) for _ in range(columns)] for _ in range(rows)]
+
+def print_matrix(matrix):
+    """"""
+    Prints the matrix in a formatted way
+    """"""
+    for row in matrix:
+        print("" "".join(""{:3d}"".format(cell) for cell in row))
+
+def matrix_multiplication(A, B):
+    """"""
+    Multiplies matrix A with matrix B
+    """"""
+    rows_A, columns_A = len(A), len(A[0])
+    rows_B, columns_B = len(B), len(B[0])
+
+    if columns_A != rows_B:
+        print(""Cannot multiply matrices due to dimension mismatch!"")
+        return None
+
+    result = generate_matrix(rows_A, columns_B)
+
+    for i, row in enumerate(A):
+        for j, col in enumerate(zip(*B)):
+            result[i][j] = sum(a * b for a, b in zip(row, col))
+
+    return result
+
+if __name__ == ""__main__"":
+    A = generate_matrix(3, 4)
+    B = generate_matrix(4, 2)
+
+    print(""Matrix A:"")
+    print_matrix(A)
+    print(""\nMatrix B:"")
+    print_matrix(B)
+    print(""\nResult of multiplication:"")
+    print_matrix(matrix_multiplication(A, B))
+```
+"
